@@ -5,3 +5,5 @@ if on_rtd:
     html_theme = "default"
 else:
     html_theme = "nature"
+    
+root_doc = 'index'
