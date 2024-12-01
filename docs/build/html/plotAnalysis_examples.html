@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Performance and data visualization examples &mdash; EnrichRBP 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Release History" href="release_history.html" />
+    <link rel="prev" title="Evaluating classifiers examples" href="evaluateClassifiers_examples.html" />
+    <link href="_static/default.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EnrichRBP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file_operation.html">EnrichRBP.filesOperation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNA_features.html">EnrichRBP.Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_selection_methods.html">EnrichRBP.featureSelection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluate_classifiers.html">EnrichRBP.evaluateClassifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_plots.html">EnrichRBP.metricsPlot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">EnrichRBP basic usage flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileOperation_examples.html">File operation examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="featureGeneration_examples.html">Feature generation examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="featureSelection_examples.html">Feature selection examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluateClassifiers_examples.html">Evaluating classifiers examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Performance and data visualization examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importing-related-modules">Importing related modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-metrics-visualization">Performance metrics visualization</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-preparation">Data preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#violin-plot">violin plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#box-plot">box plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#point-plot">point plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bar-plot">bar plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-roc-curve">Plot roc curve</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#deep-learning-models">Deep learning models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#machine-learning-classifiers">Machine learning classifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-confusion-matrix">Plot confusion matrix</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Deep learning models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Machine learning classifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-det-curve">Plot det curve</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Deep learning models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Machine learning classifiers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-precision-recall-curve">Plot precision recall curve</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Deep learning models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#machine-learning-models">Machine learning models</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-partial-dependence">Plot partial dependence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-prediction-error-bar">Plot prediction error bar</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-descrimination-threshold">Plot descrimination threshold</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-learning-curve">Plot learning curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-cross-validation-score">Plot cross validation score</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#feature-analysis-plot">Feature analysis plot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#shap-bar-plot">Shap bar plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shap-scatter-plot">shap scatter plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shap-waterfall-plot">shap waterfall plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shap-interaction-scatter-plot">shap interaction scatter plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shap-beeswarm-plot">shap beeswarm plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#shap-heatmap-plot">shap heatmap plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#feature-heatmap-plot">feature heatmap plot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HISTORY</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EnrichRBP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Performance and data visualization examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/plotAnalysis_examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="performance-and-data-visualization-examples">
+<h1>Performance and data visualization examples<a class="headerlink" href="#performance-and-data-visualization-examples" title="Permalink to this heading">¶</a></h1>
+<p>A variety of visualization functions are integrated in EnrichRBP, which can perform certain correlation analysis on feature data and also visualize the obtained performance index data for plotting.</p>
+<section id="importing-related-modules">
+<h2>Importing related modules<a class="headerlink" href="#importing-related-modules" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># import file operation module</span>
+<span class="kn">from</span> <span class="nn">EnrichRBP.filesOperation</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># import the visualize module in EnrichRBP</span>
+<span class="kn">from</span> <span class="nn">EnrichRBP.metricsPlot</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="c1"># create CNN and RNN models for example</span>
+<span class="kn">from</span> <span class="nn">EnrichRBP.evaluateClassifiers</span> <span class="kn">import</span> <span class="n">createRNN</span><span class="p">,</span> <span class="n">createCNN</span>
+<span class="kn">from</span> <span class="nn">EnrichRBP.Features</span> <span class="kn">import</span> <span class="n">generateDynamicLMFeatures</span><span class="p">,</span> <span class="n">generateBPFeatures</span>
+
+<span class="c1"># import some machine learning classifiers for example</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+<span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+
+<span class="c1"># import train_test_split module to divide features into training set and test set.</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># using dataframe to deal with performance metrics data</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="kn">from</span> <span class="nn">tensorflow.keras.callbacks</span> <span class="kn">import</span> <span class="n">EarlyStopping</span>
+<span class="kn">from</span> <span class="nn">tensorflow.keras.utils</span> <span class="kn">import</span> <span class="n">to_categorical</span>
+</pre></div>
+</div>
+</section>
+<section id="performance-metrics-visualization">
+<h2>Performance metrics visualization<a class="headerlink" href="#performance-metrics-visualization" title="Permalink to this heading">¶</a></h2>
+<p>In this section, we give examples of performance metrics visualization functions in <code class="docutils literal notranslate"><span class="pre">EnrichRBP</span></code>, please note that when using these functions, you need to install <code class="docutils literal notranslate"><span class="pre">yellowbrick</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code> and <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code></p>
+<section id="data-preparation">
+<h3>Data preparation<a class="headerlink" href="#data-preparation" title="Permalink to this heading">¶</a></h3>
+<p>Here we prepare the relevant features as well as models to be used in different plot functions.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fasta_path</span> <span class="o">=</span> <span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/RNA_datasets/circRNAdataset/AGO1/seq&#39;</span>
+<span class="n">label_path</span> <span class="o">=</span> <span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/RNA_datasets/circRNAdataset/AGO1/label&#39;</span>
+
+<span class="n">sequences</span> <span class="o">=</span> <span class="n">read_fasta_file</span><span class="p">(</span><span class="n">fasta_path</span><span class="p">)</span>  <span class="c1"># read sequences and labels from given path</span>
+<span class="n">label</span> <span class="o">=</span> <span class="n">read_label</span><span class="p">(</span><span class="n">label_path</span><span class="p">)</span>
+
+<span class="c1"># Generate dynamic semantic information for training deep learning models</span>
+<span class="n">dynamic_semantic_information</span> <span class="o">=</span> <span class="n">generateDynamicLMFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">kmer</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/dynamicRNALM/circleRNA/pytorch_model_4mer&#39;</span><span class="p">)</span>
+
+<span class="c1"># Generate biological features for training machine learning classifiers</span>
+<span class="n">biological_features</span> <span class="o">=</span> <span class="n">generateBPFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">PGKM</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># create CNN and RNN models for plots.</span>
+<span class="n">CNN_model</span> <span class="o">=</span> <span class="n">createCNN</span><span class="p">(</span><span class="n">dynamic_semantic_information</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dynamic_semantic_information</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">RNN_model</span> <span class="o">=</span> <span class="n">createRNN</span><span class="p">(</span><span class="n">dynamic_semantic_information</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">dynamic_semantic_information</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1"># create several machine learning classifiers for plots.</span>
+<span class="n">ML_Classifiers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">max_iter</span><span class="o">=</span><span class="mi">10000</span><span class="p">),</span>
+    <span class="n">KNeighborsClassifier</span><span class="p">(),</span>
+    <span class="n">DecisionTreeClassifier</span><span class="p">(),</span>
+    <span class="n">GaussianNB</span><span class="p">(),</span>
+    <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="p">]</span>
+<span class="c1"># We use as an example the performance data obtained in the previous evaluation of machine learning classifiers</span>
+<span class="n">ml_metric_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/ML_evalution_metrics.csv&#39;</span><span class="p">)</span>
+
+<span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span><span class="n">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="s1">&#39;val_loss&#39;</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;min&#39;</span><span class="p">,</span> <span class="n">restore_best_weights</span><span class="o">=</span><span class="kc">True</span><span class="p">)]</span>
+<span class="n">labels_2D</span> <span class="o">=</span> <span class="n">to_categorical</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The format of the metric file is as follows:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>                      <span class="n">clf_name</span>    <span class="n">values</span> <span class="n">metric_name</span>
+<span class="mi">0</span>           <span class="n">LogisticRegression</span>  <span class="mf">0.757671</span>         <span class="n">AUC</span>
+<span class="mi">1</span>           <span class="n">LogisticRegression</span>  <span class="mf">0.686194</span>         <span class="n">ACC</span>
+<span class="mi">2</span>           <span class="n">LogisticRegression</span>  <span class="mf">0.372397</span>         <span class="n">MCC</span>
+<span class="mi">3</span>           <span class="n">LogisticRegression</span>  <span class="mf">0.690023</span>      <span class="n">Recall</span>
+<span class="mi">4</span>           <span class="n">LogisticRegression</span>  <span class="mf">0.687357</span>   <span class="n">F1_Scores</span>
+<span class="mi">5</span>         <span class="n">KNeighborsClassifier</span>  <span class="mf">0.708609</span>         <span class="n">AUC</span>
+<span class="mi">6</span>         <span class="n">KNeighborsClassifier</span>  <span class="mf">0.651634</span>         <span class="n">ACC</span>
+<span class="mi">7</span>         <span class="n">KNeighborsClassifier</span>  <span class="mf">0.303814</span>         <span class="n">MCC</span>
+<span class="mi">8</span>         <span class="n">KNeighborsClassifier</span>  <span class="mf">0.622109</span>      <span class="n">Recall</span>
+<span class="mi">9</span>         <span class="n">KNeighborsClassifier</span>  <span class="mf">0.641023</span>   <span class="n">F1_Scores</span>
+<span class="mi">10</span>      <span class="n">DecisionTreeClassifier</span>  <span class="mf">0.583520</span>         <span class="n">AUC</span>
+<span class="mi">11</span>      <span class="n">DecisionTreeClassifier</span>  <span class="mf">0.583583</span>         <span class="n">ACC</span>
+<span class="mi">12</span>      <span class="n">DecisionTreeClassifier</span>  <span class="mf">0.167029</span>         <span class="n">MCC</span>
+<span class="mi">13</span>      <span class="n">DecisionTreeClassifier</span>  <span class="mf">0.583673</span>      <span class="n">Recall</span>
+<span class="mi">14</span>      <span class="n">DecisionTreeClassifier</span>  <span class="mf">0.583596</span>   <span class="n">F1_Scores</span>
+<span class="mi">15</span>                  <span class="n">GaussianNB</span>  <span class="mf">0.724388</span>         <span class="n">AUC</span>
+<span class="mi">16</span>                  <span class="n">GaussianNB</span>  <span class="mf">0.662461</span>         <span class="n">ACC</span>
+<span class="mi">17</span>                  <span class="n">GaussianNB</span>  <span class="mf">0.326168</span>         <span class="n">MCC</span>
+<span class="mi">18</span>                  <span class="n">GaussianNB</span>  <span class="mf">0.703995</span>      <span class="n">Recall</span>
+<span class="mi">19</span>                  <span class="n">GaussianNB</span>  <span class="mf">0.675895</span>   <span class="n">F1_Scores</span>
+<span class="mi">20</span>           <span class="n">BaggingClassifier</span>  <span class="mf">0.699751</span>         <span class="n">AUC</span>
+<span class="mi">21</span>           <span class="n">BaggingClassifier</span>  <span class="mf">0.642049</span>         <span class="n">ACC</span>
+<span class="mi">22</span>           <span class="n">BaggingClassifier</span>  <span class="mf">0.286901</span>         <span class="n">MCC</span>
+<span class="mi">23</span>           <span class="n">BaggingClassifier</span>  <span class="mf">0.573204</span>      <span class="n">Recall</span>
+<span class="mi">24</span>           <span class="n">BaggingClassifier</span>  <span class="mf">0.615563</span>   <span class="n">F1_Scores</span>
+<span class="mi">25</span>      <span class="n">RandomForestClassifier</span>  <span class="mf">0.766152</span>         <span class="n">AUC</span>
+<span class="mi">26</span>      <span class="n">RandomForestClassifier</span>  <span class="mf">0.693585</span>         <span class="n">ACC</span>
+<span class="mi">27</span>      <span class="n">RandomForestClassifier</span>  <span class="mf">0.387366</span>         <span class="n">MCC</span>
+<span class="mi">28</span>      <span class="n">RandomForestClassifier</span>  <span class="mf">0.710193</span>      <span class="n">Recall</span>
+<span class="mi">29</span>      <span class="n">RandomForestClassifier</span>  <span class="mf">0.698591</span>   <span class="n">F1_Scores</span>
+<span class="mi">30</span>          <span class="n">AdaBoostClassifier</span>  <span class="mf">0.742326</span>         <span class="n">AUC</span>
+<span class="mi">31</span>          <span class="n">AdaBoostClassifier</span>  <span class="mf">0.675107</span>         <span class="n">ACC</span>
+<span class="mi">32</span>          <span class="n">AdaBoostClassifier</span>  <span class="mf">0.350416</span>         <span class="n">MCC</span>
+<span class="mi">33</span>          <span class="n">AdaBoostClassifier</span>  <span class="mf">0.690847</span>      <span class="n">Recall</span>
+<span class="mi">34</span>          <span class="n">AdaBoostClassifier</span>  <span class="mf">0.680126</span>   <span class="n">F1_Scores</span>
+<span class="mi">35</span>  <span class="n">GradientBoostingClassifier</span>  <span class="mf">0.764653</span>         <span class="n">AUC</span>
+<span class="mi">36</span>  <span class="n">GradientBoostingClassifier</span>  <span class="mf">0.690264</span>         <span class="n">ACC</span>
+<span class="mi">37</span>  <span class="n">GradientBoostingClassifier</span>  <span class="mf">0.381289</span>         <span class="n">MCC</span>
+<span class="mi">38</span>  <span class="n">GradientBoostingClassifier</span>  <span class="mf">0.716291</span>      <span class="n">Recall</span>
+<span class="mi">39</span>  <span class="n">GradientBoostingClassifier</span>  <span class="mf">0.698100</span>   <span class="n">F1_Scores</span>
+<span class="mi">40</span>                         <span class="n">SVM</span>  <span class="mf">0.804761</span>         <span class="n">AUC</span>
+<span class="mi">41</span>                         <span class="n">SVM</span>  <span class="mf">0.727653</span>         <span class="n">ACC</span>
+<span class="mi">42</span>                         <span class="n">SVM</span>  <span class="mf">0.455588</span>         <span class="n">MCC</span>
+<span class="mi">43</span>                         <span class="n">SVM</span>  <span class="mf">0.745526</span>      <span class="n">Recall</span>
+<span class="mi">44</span>                         <span class="n">SVM</span>  <span class="mf">0.732425</span>   <span class="n">F1_Scores</span>
+<span class="mi">45</span>  <span class="n">LinearDiscriminantAnalysis</span>  <span class="mf">0.758004</span>         <span class="n">AUC</span>
+<span class="mi">46</span>  <span class="n">LinearDiscriminantAnalysis</span>  <span class="mf">0.687464</span>         <span class="n">ACC</span>
+<span class="mi">47</span>  <span class="n">LinearDiscriminantAnalysis</span>  <span class="mf">0.375057</span>         <span class="n">MCC</span>
+<span class="mi">48</span>  <span class="n">LinearDiscriminantAnalysis</span>  <span class="mf">0.691123</span>      <span class="n">Recall</span>
+<span class="mi">49</span>  <span class="n">LinearDiscriminantAnalysis</span>  <span class="mf">0.688563</span>   <span class="n">F1_Scores</span>
+<span class="mi">50</span>        <span class="n">ExtraTreesClassifier</span>  <span class="mf">0.768708</span>         <span class="n">AUC</span>
+<span class="mi">51</span>        <span class="n">ExtraTreesClassifier</span>  <span class="mf">0.695433</span>         <span class="n">ACC</span>
+<span class="mi">52</span>        <span class="n">ExtraTreesClassifier</span>  <span class="mf">0.391130</span>         <span class="n">MCC</span>
+<span class="mi">53</span>        <span class="n">ExtraTreesClassifier</span>  <span class="mf">0.710470</span>      <span class="n">Recall</span>
+<span class="mi">54</span>        <span class="n">ExtraTreesClassifier</span>  <span class="mf">0.699929</span>   <span class="n">F1_Scores</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="violin-plot">
+<h3>violin plot<a class="headerlink" href="#violin-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot violin figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># The x-axis is divided according to clf_name, and the various performance metrics are put together on the y-axis to draw a violin plot</span>
+<span class="n">violinplot</span><span class="p">(</span><span class="n">ml_metric_data</span><span class="p">,</span> <span class="n">x_id</span><span class="o">=</span><span class="s1">&#39;clf_name&#39;</span><span class="p">,</span> <span class="n">y_id</span><span class="o">=</span><span class="s1">&#39;values&#39;</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">violinplot.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="violinplot" class="align-center" src="_images/violinplot.png" />
+</section>
+<section id="box-plot">
+<h3>box plot<a class="headerlink" href="#box-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot box figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># The x-axis is divided according to clf_name, and the various performance metrics are put together on the y-axis to draw a box plot</span>
+<span class="n">boxplot</span><span class="p">(</span><span class="n">ml_metric_data</span><span class="p">,</span> <span class="n">x_id</span><span class="o">=</span><span class="s1">&#39;clf_name&#39;</span><span class="p">,</span> <span class="n">y_id</span><span class="o">=</span><span class="s1">&#39;values&#39;</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">boxplot.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="boxplot" class="align-center" src="_images/boxplot.png" />
+</section>
+<section id="point-plot">
+<h3>point plot<a class="headerlink" href="#point-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot point figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># The x-axis is divided according to clf_name, and the various performance metrics are put together on the y-axis to draw a point plot</span>
+<span class="n">pointplot</span><span class="p">(</span><span class="n">ml_metric_data</span><span class="p">,</span> <span class="n">x_id</span><span class="o">=</span><span class="s1">&#39;clf_name&#39;</span><span class="p">,</span> <span class="n">y_id</span><span class="o">=</span><span class="s1">&#39;values&#39;</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">pointplot.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="pointplot" class="align-center" src="_images/pointplot.png" />
+</section>
+<section id="bar-plot">
+<h3>bar plot<a class="headerlink" href="#bar-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot bar figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># The x-axis is divided according to clf_name, and the various performance metrics are put together on the y-axis to draw a box plot</span>
+<span class="n">barplot</span><span class="p">(</span><span class="n">ml_metric_data</span><span class="p">,</span> <span class="n">x_id</span><span class="o">=</span><span class="s1">&#39;clf_name&#39;</span><span class="p">,</span> <span class="n">y_id</span><span class="o">=</span><span class="s1">&#39;values&#39;</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">barplot.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="barplot" class="align-center" src="_images/barplot.png" />
+</section>
+<section id="plot-roc-curve">
+<h3>Plot roc curve<a class="headerlink" href="#plot-roc-curve" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot the roc curve.</p>
+<section id="deep-learning-models">
+<h4>Deep learning models<a class="headerlink" href="#deep-learning-models" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">label_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pred_proba_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">name_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CNN&#39;</span><span class="p">,</span> <span class="s1">&#39;RNN&#39;</span><span class="p">]</span>
+
+<span class="c1"># Divide the features into training and test sets in the ratio of 3:1</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dynamic_semantic_information</span><span class="p">,</span> <span class="n">labels_2D</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Take 10% from the training set as the validation set</span>
+<span class="n">train_X</span><span class="p">,</span> <span class="n">val_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># train CNN and RNN models</span>
+<span class="n">CNN_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">CNN_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">train_y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+                      <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">val_X</span><span class="p">,</span> <span class="n">val_y</span><span class="p">))</span>
+<span class="n">pre_proba_CNN</span> <span class="o">=</span> <span class="n">CNN_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">test_y1</span> <span class="o">=</span> <span class="n">test_y</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">label_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_y1</span><span class="p">)</span>
+<span class="n">pred_proba_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pre_proba_CNN</span><span class="p">)</span>
+
+<span class="n">RNN_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">RNN_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">train_y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+                      <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">val_X</span><span class="p">,</span> <span class="n">val_y</span><span class="p">))</span>
+<span class="n">pre_proba_RNN</span> <span class="o">=</span> <span class="n">RNN_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">test_y2</span> <span class="o">=</span> <span class="n">test_y</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">label_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_y2</span><span class="p">)</span>
+<span class="n">pred_proba_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pre_proba_RNN</span><span class="p">)</span>
+
+<span class="c1"># plot the roc curve</span>
+<span class="n">roc_curve_deeplearning</span><span class="p">(</span><span class="n">label_list</span><span class="o">=</span><span class="n">label_list</span><span class="p">,</span> <span class="n">pred_proba_list</span><span class="o">=</span><span class="n">pred_proba_list</span><span class="p">,</span> <span class="n">name_list</span><span class="o">=</span><span class="n">name_list</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">roc_curve.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="roc_curve_deeplearning" class="align-center" src="_images/roc_curve_deeplearning.png" />
+</section>
+<section id="machine-learning-classifiers">
+<h4>Machine learning classifiers<a class="headerlink" href="#machine-learning-classifiers" title="Permalink to this heading">¶</a></h4>
+<p>In the machine learning plotting process, we don’t need to train the classifiers manually, we just need to pass the feature matrix, labels and classifiers into the function.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Using the previously created set of classifiers and the biological feature matrix, the test set ratio is set to 0.25 for roc curve plotting.</span>
+<span class="n">roc_curve_machinelearning</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">ML_Classifiers</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">roc_curve.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="roc_curve_machinelearning" class="align-center" src="_images/roc_curve_machinelearning.png" />
+</section>
+</section>
+<section id="plot-confusion-matrix">
+<h3>Plot confusion matrix<a class="headerlink" href="#plot-confusion-matrix" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot the confusion matrix.</p>
+<section id="id1">
+<h4>Deep learning models<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Divide the features into training and test sets in the ratio of 3:1</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dynamic_semantic_information</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Take 10% from the training set as the validation set</span>
+<span class="n">train_X</span><span class="p">,</span> <span class="n">val_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># train CNN model for example</span>
+<span class="n">CNN_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">CNN_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">train_y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+                      <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">val_X</span><span class="p">,</span> <span class="n">val_y</span><span class="p">))</span>
+<span class="n">pre_proba_CNN</span> <span class="o">=</span> <span class="n">CNN_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+<span class="n">pred_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pre_proba_CNN</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="n">test_y</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># plot the confusion matrix</span>
+<span class="n">confusion_matirx_deeplearning</span><span class="p">(</span><span class="n">test_labels</span><span class="o">=</span><span class="n">test_labels</span><span class="p">,</span> <span class="n">pred_labels</span><span class="o">=</span><span class="n">pred_labels</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">confusion_matrix.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="confusion_matrix_deeplearning" class="align-center" src="_images/confusion_matrix.png" />
+</section>
+<section id="id2">
+<h4>Machine learning classifiers<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># select the LogisticRegression for example</span>
+<span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># the test set ratio is set to 0.25 for plotting confusion matrix</span>
+<span class="n">confusion_matrix_machinelearning</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">without_normalization_confusionMatrix.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="confusion_matrix_ML_without_normalization" class="align-center" src="_images/without_normalization_confusionMatrix.png" />
+<p>When <code class="docutils literal notranslate"><span class="pre">normalize</span></code> is set to ‘true’, ‘pred’ or ‘all’, the resulting image is as follows (file name is <code class="docutils literal notranslate"><span class="pre">normalization_confusionMatrix.png</span></code>):</p>
+<img alt="confusion_matrix_ML_normalization" class="align-center" src="_images/normalization_confusionMatrix.png" />
+</section>
+</section>
+<section id="plot-det-curve">
+<h3>Plot det curve<a class="headerlink" href="#plot-det-curve" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot the det curve.</p>
+<section id="id3">
+<h4>Deep learning models<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">label_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pred_proba_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">name_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CNN&#39;</span><span class="p">,</span> <span class="s1">&#39;RNN&#39;</span><span class="p">]</span>
+
+<span class="c1"># Divide the features into training and test sets in the ratio of 3:1</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dynamic_semantic_information</span><span class="p">,</span> <span class="n">labels_2D</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Take 10% from the training set as the validation set</span>
+<span class="n">train_X</span><span class="p">,</span> <span class="n">val_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># train CNN and RNN models</span>
+<span class="n">CNN_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">CNN_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">train_y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+                      <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">val_X</span><span class="p">,</span> <span class="n">val_y</span><span class="p">))</span>
+<span class="n">pre_proba_CNN</span> <span class="o">=</span> <span class="n">CNN_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">test_y1</span> <span class="o">=</span> <span class="n">test_y</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">label_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_y1</span><span class="p">)</span>
+<span class="n">pred_proba_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pre_proba_CNN</span><span class="p">)</span>
+
+<span class="n">RNN_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">RNN_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">train_y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+                      <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">val_X</span><span class="p">,</span> <span class="n">val_y</span><span class="p">))</span>
+<span class="n">pre_proba_RNN</span> <span class="o">=</span> <span class="n">RNN_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">test_y2</span> <span class="o">=</span> <span class="n">test_y</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">label_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_y2</span><span class="p">)</span>
+<span class="n">pred_proba_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pre_proba_RNN</span><span class="p">)</span>
+
+<span class="c1"># plot the det curve</span>
+<span class="n">det_curve_deeplearning</span><span class="p">(</span><span class="n">label_list</span><span class="p">,</span> <span class="n">pred_proba_list</span><span class="p">,</span> <span class="n">name_list</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">det_curve.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="det_curve_deeplearning" class="align-center" src="_images/det_curve_deeplearning.png" />
+</section>
+<section id="id4">
+<h4>Machine learning classifiers<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
+<p>In the machine learning plotting process, we don’t need to train the classifiers manually, we just need to pass the feature matrix, labels and classifiers into the function.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">det_curve_machinelearning</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">ML_Classifiers</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">det_curve.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="det_curve_machinelearning" class="align-center" src="_images/det_curve_machinelearning.png" />
+</section>
+</section>
+<section id="plot-precision-recall-curve">
+<h3>Plot precision recall curve<a class="headerlink" href="#plot-precision-recall-curve" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot the precision recall curve.</p>
+<section id="id5">
+<h4>Deep learning models<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">label_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">pred_label_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">name_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;CNN&#39;</span><span class="p">,</span> <span class="s1">&#39;RNN&#39;</span><span class="p">]</span>
+
+<span class="c1"># Divide the features into training and test sets in the ratio of 3:1</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">test_X</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">dynamic_semantic_information</span><span class="p">,</span> <span class="n">labels_2D</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># Take 10% from the training set as the validation set</span>
+<span class="n">train_X</span><span class="p">,</span> <span class="n">val_X</span><span class="p">,</span> <span class="n">train_y</span><span class="p">,</span> <span class="n">val_y</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="c1"># train CNN and RNN models</span>
+<span class="n">CNN_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">CNN_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">train_y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+                      <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">val_X</span><span class="p">,</span> <span class="n">val_y</span><span class="p">))</span>
+<span class="n">pre_proba_CNN</span> <span class="o">=</span> <span class="n">CNN_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+<span class="n">test_y1</span> <span class="o">=</span> <span class="n">test_y</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">label_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_y1</span><span class="p">)</span>
+<span class="n">pred_label_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pre_proba_CNN</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="n">RNN_model</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">optimizer</span><span class="o">=</span><span class="s1">&#39;adam&#39;</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="s1">&#39;binary_crossentropy&#39;</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
+<span class="n">RNN_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">train_X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">train_y</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+                      <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">val_X</span><span class="p">,</span> <span class="n">val_y</span><span class="p">))</span>
+<span class="n">pre_proba_RNN</span> <span class="o">=</span> <span class="n">RNN_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_X</span><span class="p">)</span>
+<span class="n">test_y2</span> <span class="o">=</span> <span class="n">test_y</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">label_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_y2</span><span class="p">)</span>
+<span class="n">pred_label_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">pre_proba_RNN</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># plot the precision recall curve</span>
+<span class="n">precision_recall_curve_deeplearning</span><span class="p">(</span><span class="n">label_list</span><span class="p">,</span> <span class="n">pred_label_list</span><span class="p">,</span> <span class="n">name_list</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">precision_recall_curve.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="precision_recall_curve_deeplearning" class="align-center" src="_images/precision_recall_curve_deeplearning.png" />
+</section>
+<section id="machine-learning-models">
+<h4>Machine learning models<a class="headerlink" href="#machine-learning-models" title="Permalink to this heading">¶</a></h4>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">precision_recall_curve_machinelearning</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">ML_Classifiers</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">precision_recall_curve.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="precision_recall_curve_machinelearning" class="align-center" src="_images/precision_recall_curve_machinelearning.png" />
+</section>
+</section>
+<section id="plot-partial-dependence">
+<h3>Plot partial dependence<a class="headerlink" href="#plot-partial-dependence" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot the partial dependence.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Plot the first six dimensions of features, and if you use a dataframe, you can specify specific feature names</span>
+<span class="n">partial_dependence</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">partial_dependence.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="partial_dependence" class="align-center" src="_images/partial_dependence.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Currently this function is only available for machine learning classifiers, please look forward to subsequent implementations for deep learning models.</p>
+</div>
+</section>
+<section id="plot-prediction-error-bar">
+<h3>Plot prediction error bar<a class="headerlink" href="#plot-prediction-error-bar" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot prediction error bar figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">prediction_error</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">classes</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;positive&#39;</span><span class="p">,</span> <span class="s1">&#39;negative&#39;</span><span class="p">],</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">prediction_error.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="prediction_error" class="align-center" src="_images/prediction_error.png" />
+</section>
+<section id="plot-descrimination-threshold">
+<h3>Plot descrimination threshold<a class="headerlink" href="#plot-descrimination-threshold" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot descrimination threshold figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">descrimination_threshold</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">descrimination_threshold.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="descrimination_threshold" class="align-center" src="_images/descrimination_threshold.png" />
+</section>
+<section id="plot-learning-curve">
+<h3>Plot learning curve<a class="headerlink" href="#plot-learning-curve" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot learning curve figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">folds</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">learning_curve</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">folds</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">learning_curve.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="learning_curve" class="align-center" src="_images/learning_curve.png" />
+</section>
+<section id="plot-cross-validation-score">
+<h3>Plot cross validation score<a class="headerlink" href="#plot-cross-validation-score" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot cross validation score figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">folds</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">cross_validation_score</span><span class="p">(</span><span class="n">folds</span><span class="o">=</span><span class="n">folds</span><span class="p">,</span> <span class="n">clf</span><span class="o">=</span><span class="n">clf</span><span class="p">,</span> <span class="n">features</span><span class="o">=</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">cv_score.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="cv_score" class="align-center" src="_images/cv_score.png" />
+</section>
+</section>
+<section id="feature-analysis-plot">
+<h2>Feature analysis plot<a class="headerlink" href="#feature-analysis-plot" title="Permalink to this heading">¶</a></h2>
+<p>The functions in this section currently only support machine learning classifiers, and the implementation of deep learning models is still in progress, so please look forward to subsequent versions.</p>
+<section id="shap-bar-plot">
+<h3>Shap bar plot<a class="headerlink" href="#shap-bar-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot shap bar figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># The shap bar is plotted using logistic regression, where the first 100 samples, and the first 10 dimensional features are selected for the shap value calculation。</span>
+<span class="n">shap_bar</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">feature_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">shap_bar.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="shap_bar" class="align-center" src="_images/shap_bar.png" />
+</section>
+<section id="shap-scatter-plot">
+<h3>shap scatter plot<a class="headerlink" href="#shap-scatter-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot shap scatter figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">shap_scatter</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">feature_id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">feature_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">shap_scatter.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="shap_scatter" class="align-center" src="_images/scatter.png" />
+</section>
+<section id="shap-waterfall-plot">
+<h3>shap waterfall plot<a class="headerlink" href="#shap-waterfall-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot shap waterfall figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">shap_waterfall</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">feature_id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">feature_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">shap_waterfall.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="shap_waterfall" class="align-center" src="_images/waterfall.png" />
+</section>
+<section id="shap-interaction-scatter-plot">
+<h3>shap interaction scatter plot<a class="headerlink" href="#shap-interaction-scatter-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot shap interaction scatter figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">shap_interaction_scatter</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">feature_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">shap_interaction_scatter.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="shap_interaction_scatter" class="align-center" src="_images/interaction_scatter.png" />
+</section>
+<section id="shap-beeswarm-plot">
+<h3>shap beeswarm plot<a class="headerlink" href="#shap-beeswarm-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot shap beeswarm figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">shap_beeswarm</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">feature_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">shap_beeswarm.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="shap_beeswarm" class="align-center" src="_images/beeswarm.png" />
+</section>
+<section id="shap-heatmap-plot">
+<h3>shap heatmap plot<a class="headerlink" href="#shap-heatmap-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot shap heatmap figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">ML_Classifiers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">shap_heatmap</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">feature_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">shap_heatmap.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="shap_heatmap" class="align-center" src="_images/shap_heatmap.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The process of ploting the image is very time consuming because the training of shap explainer is required to plot the figure for shap feature analysis, please be patient.</p>
+</div>
+</section>
+<section id="feature-heatmap-plot">
+<h3>feature heatmap plot<a class="headerlink" href="#feature-heatmap-plot" title="Permalink to this heading">¶</a></h3>
+<p>This example shows how to use the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code> module to plot feature heatmap figure.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># The x-axis is divided according to clf_name, and the various performance metrics are put together on the y-axis to draw a box plot</span>
+<span class="n">sns_heatmap</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">feature_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">15</span><span class="p">),</span> <span class="n">image_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>After the function finishes running, it will save a <code class="docutils literal notranslate"><span class="pre">sns_heatmap.png</span></code> file in the path specified by <code class="docutils literal notranslate"><span class="pre">image_path</span></code>, as follows:</p>
+<img alt="feature_heatmap" class="align-center" src="_images/sns_heatmap.png" />
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="evaluateClassifiers_examples.html" class="btn btn-neutral float-left" title="Evaluating classifiers examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="release_history.html" class="btn btn-neutral float-right" title="Release History" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yubo Wang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feature generation examples &mdash; EnrichRBP 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Feature selection examples" href="featureSelection_examples.html" />
+    <link rel="prev" title="File operation examples" href="fileOperation_examples.html" />
+    <link href="_static/default.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EnrichRBP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file_operation.html">EnrichRBP.filesOperation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNA_features.html">EnrichRBP.Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_selection_methods.html">EnrichRBP.featureSelection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluate_classifiers.html">EnrichRBP.evaluateClassifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_plots.html">EnrichRBP.metricsPlot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">EnrichRBP basic usage flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileOperation_examples.html">File operation examples</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Feature generation examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importing-related-modules">Importing related modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generating-biological-features-for-ago1-dataset">Generating biological features for AGO1 dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generating-semantic-information-for-ago1-dataset">Generating semantic information for AGO1 dataset</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#dynamic-semantic-information-generation">Dynamic semantic information generation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#static-semantic-information-generation">Static semantic information generation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#secondary-structure-information-generation">Secondary structure information generation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="featureSelection_examples.html">Feature selection examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluateClassifiers_examples.html">Evaluating classifiers examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotAnalysis_examples.html">Performance and data visualization examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HISTORY</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EnrichRBP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Feature generation examples</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/featureGeneration_examples.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="feature-generation-examples">
+<h1>Feature generation examples<a class="headerlink" href="#feature-generation-examples" title="Permalink to this heading">¶</a></h1>
+<p>This page shows how to generate three types of features using the <code class="docutils literal notranslate"><span class="pre">EnrichRBP.Features</span></code> module.</p>
+<section id="importing-related-modules">
+<h2>Importing related modules<a class="headerlink" href="#importing-related-modules" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">EnrichRBP.filesOperation</span> <span class="kn">import</span> <span class="n">read_fasta_file</span>
+<span class="kn">from</span> <span class="nn">EnrichRBP.Features</span> <span class="kn">import</span> <span class="n">generateDynamicLMFeatures</span><span class="p">,</span> <span class="n">generateStaticLMFeatures</span><span class="p">,</span> <span class="n">generateStructureFeatures</span><span class="p">,</span> <span class="n">generateBPFeatures</span>
+</pre></div>
+</div>
+</section>
+<section id="generating-biological-features-for-ago1-dataset">
+<h2>Generating biological features for AGO1 dataset<a class="headerlink" href="#generating-biological-features-for-ago1-dataset" title="Permalink to this heading">¶</a></h2>
+<p>The dimensionality of the matrix generated by these features is independent of the length of the sequence, and when the seven features are generated simultaneously and the maximum value of each parameter is chosen, a <code class="docutils literal notranslate"><span class="pre">3472-dimensional</span></code> feature vector can be generated for a sequence.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># read AGO1 dataset as example</span>
+<span class="n">fasta_path</span> <span class="o">=</span> <span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/RNA_datasets/circRNAdataset/AGO1/seq&#39;</span> <span class="c1"># Replace the path to load your own sequences of dataset</span>
+
+<span class="n">sequences</span> <span class="o">=</span> <span class="n">read_fasta_file</span><span class="p">(</span><span class="n">fasta_path</span><span class="p">)</span>
+<span class="n">biological_features</span> <span class="o">=</span> <span class="n">generateBPFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">pseudoKNC</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">ktuple</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">zigzag_coding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">guanine_cytosine_Quantity</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">nucleotide_tilt</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">percentage_of_bases</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">PGKM</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">gapValue</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">kValue</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">mValue</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">DPCP</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">biological_features</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">biological_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl>
+<dt>output:</dt><dd><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;numpy.ndarray&#39;&gt;
+(34646, 3472)
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="generating-semantic-information-for-ago1-dataset">
+<h2>Generating semantic information for AGO1 dataset<a class="headerlink" href="#generating-semantic-information-for-ago1-dataset" title="Permalink to this heading">¶</a></h2>
+<p>When generating sequence semantic information, we need to use various language models trained for RBP sequences, which can be downloaded from <a class="reference external" href="https://figshare.com/ndownloader/files/37970541">figshare</a>.</p>
+<section id="dynamic-semantic-information-generation">
+<h3>Dynamic semantic information generation<a class="headerlink" href="#dynamic-semantic-information-generation" title="Permalink to this heading">¶</a></h3>
+<p>Generating dynamic semantic information requires the use of the <code class="docutils literal notranslate"><span class="pre">RBPBERT</span></code> (<a class="reference external" href="https://figshare.com/ndownloader/files/37970541">available for download here</a>) model, and the value of the parameter model needs to be passed to the k-mer <code class="docutils literal notranslate"><span class="pre">RBPBERT</span></code> storage path (k=3, 4, 5 or 6) when running the generation function.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate dynamic semantic information, the value of the parameter kmer should be the same as in the model path.</span>
+<span class="n">bert_features</span> <span class="o">=</span> <span class="n">generateDynamicLMFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">kmer</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/dynamicRNALM/circleRNA/pytorch_model_4mer&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">bert_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">bert_features</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>output:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Some weights of the model checkpoint at /home/wangyansong/wangyubo/EnrichRBP/src/dynamicRNALM/circleRNA/pytorch_model_4mer were not used when initializing BertModel: [&#39;classifier.weight&#39;, &#39;classifier.bias&#39;]
+- This IS expected if you are initializing BertModel from the checkpoint of a model trained on another task or with another architecture (e.g. initializing a BertForSequenceClassification model from a BertForPreTraining model).
+- This IS NOT expected if you are initializing BertModel from the checkpoint of a model that you expect to be exactly identical (initializing a BertForSequenceClassification model from a BertForSequenceClassification model).
+&lt;class &#39;numpy.ndarray&#39;&gt;
+(34636, 98, 768)
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="static-semantic-information-generation">
+<h3>Static semantic information generation<a class="headerlink" href="#static-semantic-information-generation" title="Permalink to this heading">¶</a></h3>
+<p>The generation of static semantic features requires the use of static language models trained on RBP sequences, including <code class="docutils literal notranslate"><span class="pre">fasttext</span></code>, <code class="docutils literal notranslate"><span class="pre">word2vec</span></code>, <code class="docutils literal notranslate"><span class="pre">doc2vec</span></code> and <code class="docutils literal notranslate"><span class="pre">GloVe</span></code> (<a class="reference external" href="https://figshare.com/ndownloader/files/37970541">available for download here</a>), and the value of the parameter model needs to be passed to the k-mer model storage path (k=3, 4, 5 or 6) when running the generation function.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generate static semantic information, the value of the parameter kmer should be the same as in the model path.</span>
+<span class="n">fasttext_features</span> <span class="o">=</span> <span class="n">generateStaticLMFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">kmer</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/staticRNALM/circleRNA/circRNA_3mer_fasttext&#39;</span><span class="p">)</span>
+<span class="n">GloVe_features</span> <span class="o">=</span> <span class="n">generateStaticLMFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">kmer</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/staticRNALM/circleRNA/circRNA_3mer_GloVe&#39;</span><span class="p">)</span>
+<span class="n">word2vec_features</span> <span class="o">=</span> <span class="n">generateStaticLMFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">kmer</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/staticRNALM/circleRNA/circRNA_3mer_word2vec&#39;</span><span class="p">)</span>
+<span class="n">doc2vec_features</span> <span class="o">=</span> <span class="n">generateStaticLMFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">kmer</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/staticRNALM/circleRNA/circRNA_4mer_doc2vec&#39;</span><span class="p">)</span>
+
+<span class="c1"># The shape of features generated from four types of models are same.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fasttext_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">GloVe_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">word2vec_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">doc2vec_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>output:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">34636</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">34636</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">34636</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">34636</span><span class="p">,</span> <span class="mi">99</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+<section id="secondary-structure-information-generation">
+<h2>Secondary structure information generation<a class="headerlink" href="#secondary-structure-information-generation" title="Permalink to this heading">¶</a></h2>
+<p>In the process of generating the secondary structure information, we need to use the RNAplfold scripts, which are located in the folder with the same name in the code package.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we only use the positive samples in AGO1 dataset as an example.</span>
+<span class="n">fasta_path</span> <span class="o">=</span> <span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/RNA_datasets/circRNAdataset/AGO1/positive&#39;</span>
+<span class="n">script_path</span> <span class="o">=</span> <span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/EnrichRBP/RNAplfold&#39;</span> <span class="c1"># where RNAplfold locates</span>
+<span class="c1"># Four subfolders E, H, I and M will be created under the path where basic_path is located, as well as the final combined_profile.txt.</span>
+<span class="n">basic_path</span> <span class="o">=</span> <span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/circRNAdatasetAGO1&#39;</span>
+<span class="n">structure_features</span> <span class="o">=</span> <span class="n">generateStructureFeatures</span><span class="p">(</span><span class="n">fasta_path</span><span class="p">,</span> <span class="n">script_path</span><span class="o">=</span><span class="n">script_path</span><span class="p">,</span> <span class="n">basic_path</span><span class="o">=</span><span class="n">basic_path</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the basic_path you specified already exists, then you will first get the following output. This does not affect the subsequent generation of structural features.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Can</span> <span class="ow">not</span> <span class="n">make</span> <span class="n">directory</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wangyansong</span><span class="o">/</span><span class="n">wangyubo</span><span class="o">/</span><span class="n">EnrichRBP</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">circRNAdatasetAGO1</span><span class="o">/</span><span class="n">E</span><span class="o">/</span>
+<span class="n">Can</span> <span class="ow">not</span> <span class="n">make</span> <span class="n">directory</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wangyansong</span><span class="o">/</span><span class="n">wangyubo</span><span class="o">/</span><span class="n">EnrichRBP</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">circRNAdatasetAGO1</span><span class="o">/</span><span class="n">H</span><span class="o">/</span>
+<span class="n">Can</span> <span class="ow">not</span> <span class="n">make</span> <span class="n">directory</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wangyansong</span><span class="o">/</span><span class="n">wangyubo</span><span class="o">/</span><span class="n">EnrichRBP</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">circRNAdatasetAGO1</span><span class="o">/</span><span class="n">I</span><span class="o">/</span>
+<span class="n">Can</span> <span class="ow">not</span> <span class="n">make</span> <span class="n">directory</span><span class="p">:</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wangyansong</span><span class="o">/</span><span class="n">wangyubo</span><span class="o">/</span><span class="n">EnrichRBP</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">circRNAdatasetAGO1</span><span class="o">/</span><span class="n">M</span><span class="o">/</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>output:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">17318</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It takes a long time to extract the secondary structure information, please be patient.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fileOperation_examples.html" class="btn btn-neutral float-left" title="File operation examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="featureSelection_examples.html" class="btn btn-neutral float-right" title="Feature selection examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yubo Wang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

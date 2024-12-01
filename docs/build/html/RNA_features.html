@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnrichRBP.Features &mdash; EnrichRBP 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="EnrichRBP.featureSelection" href="feature_selection_methods.html" />
+    <link rel="prev" title="EnrichRBP.filesOperation" href="file_operation.html" />
+    <link href="_static/default.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EnrichRBP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="file_operation.html">EnrichRBP.filesOperation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EnrichRBP.Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.Features.generateBPFeatures"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.Features.generateBPFeatures()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.Features.generateDynamicLMFeatures"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.Features.generateDynamicLMFeatures()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.Features.generateStaticLMFeatures"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.Features.generateStaticLMFeatures()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.Features.generateStructureFeatures"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.Features.generateStructureFeatures()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="feature_selection_methods.html">EnrichRBP.featureSelection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluate_classifiers.html">EnrichRBP.evaluateClassifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_plots.html">EnrichRBP.metricsPlot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">EnrichRBP basic usage flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileOperation_examples.html">File operation examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="featureGeneration_examples.html">Feature generation examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="featureSelection_examples.html">Feature selection examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluateClassifiers_examples.html">Evaluating classifiers examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotAnalysis_examples.html">Performance and data visualization examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HISTORY</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EnrichRBP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">EnrichRBP.Features</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/RNA_features.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="enrichrbp-features">
+<h1>EnrichRBP.Features<a class="headerlink" href="#enrichrbp-features" title="Permalink to this heading">¶</a></h1>
+<dl class="py method">
+<dt class="sig sig-object py" id="EnrichRBP.Features.generateBPFeatures">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.Features.</span></span><span class="sig-name descname"><span class="pre">generateBPFeatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequences</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pseudoKNC</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ktuple</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zigzag_coding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">guanine_cytosine_Quantity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nucleotide_tilt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">percentage_of_bases</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">PGKM</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gapValue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kValue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mValue</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DPCP</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.Features.generateBPFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to generate various types of features based on the sequences (physicochemical features, sequence properties, base composition, etc.).</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sequences:list</span> <span class="pre">or</span> <span class="pre">array,</span> <span class="pre">necessary</span> <span class="pre">parameters</span></span></dt>
+<dd><p>List or array of sequences used to generate features.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pseudoKNC:bool,</span> <span class="pre">default=False</span></span></dt>
+<dd><p>Whether to use pseudoKNC algorithm to generate features, if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the value of the parameter ktuple will be used for subsequent feature generation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">ktuple:int,</span> <span class="pre">default=3</span></span></dt>
+<dd><p>Used to determine the number of bases for each tuple in <cite>pseudoKNC</cite> in the values of <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">zigzag_coding:bool,</span> <span class="pre">default=False</span></span></dt>
+<dd><p>Whether to use zigzag_coding algorithm to generate features.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">guanine_cytosine_Quantity:bool,</span> <span class="pre">default=False</span></span></dt>
+<dd><p>Whether to use guanine_cytosine_Quantity algorithm to generate features.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">nucleotide_tilt:bool,</span> <span class="pre">default=False</span></span></dt>
+<dd><p>Whether to use nucleotide_tilt algorithm to generate features.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">percentage_of_bases:bool,</span> <span class="pre">default=False</span></span></dt>
+<dd><p>Whether to use percentage_of_bases algorithm to generate features.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">PGKM:bool,</span> <span class="pre">default=False</span></span></dt>
+<dd><p>Whether to use PGKM algorithm to generate features. if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the value of the parameter gapValue, kValue and mValue will be used for subsequent feature generation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">gapValue:int,</span> <span class="pre">default=1</span></span></dt>
+<dd><p>Used to determine the number of gaps between each two tuples. Its value is limited to <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">kValue:int,</span> <span class="pre">default=2</span></span></dt>
+<dd><p>Used to determine the number of bases for the first tuple in <cite>PGKM</cite>, the value is limited to <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2]</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">mValue:int,</span> <span class="pre">default=2</span></span></dt>
+<dd><p>Used to determine the number of bases for the second tuple in <cite>PGKM</cite>, the value is limited to <code class="docutils literal notranslate"><span class="pre">[1,</span> <span class="pre">2]</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">DPCP:bool,</span> <span class="pre">default=False</span></span></dt>
+<dd><p>Whether to use DPCP algorithm to generate features.</p>
+</dd></dl>
+
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:list</span> <span class="pre">of</span> <span class="pre">feature</span> <span class="pre">according</span> <span class="pre">to</span> <span class="pre">each</span> <span class="pre">sequence</span></span></dt>
+<dd><p>Used to store the final generated features for each sequence. When the function returns, it has been converted to an array.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature:list</span> <span class="pre">of</span> <span class="pre">feature</span> <span class="pre">values</span> <span class="pre">for</span> <span class="pre">one</span> <span class="pre">sequence</span></span></dt>
+<dd><p>Used Used to store the various features of the sequence being processed.</p>
+</dd></dl>
+
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The values of gapValue, kValue and mValue greatly affect the number of feature dimensions generated by the PGKM algorithm, the larger the values of these three parameters, the longer the running time of PGKM. Please set the parameter values according to your needs.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.Features.generateDynamicLMFeatures">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.Features.</span></span><span class="sig-name descname"><span class="pre">generateDynamicLMFeatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequences</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kmer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.Features.generateDynamicLMFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function is used to generate the dynamic semantic information matrix of the sequence, in which we provide the fine-tuned <code class="docutils literal notranslate"><span class="pre">BERT</span> <span class="pre">models</span> <span class="pre">(RBPBERT)</span></code> for the RBP classification problem. The models can be downloaded from <a class="reference external" href="https://figshare.com/ndownloader/files/37970541">figshare link</a>. When extraction is complete, the dimension of the feature matrix obtained is (<code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">of</span> <span class="pre">sequences</span></code>, <code class="docutils literal notranslate"><span class="pre">number</span> <span class="pre">of</span> <span class="pre">tokens</span> <span class="pre">per</span> <span class="pre">sequence</span></code>, <code class="docutils literal notranslate"><span class="pre">768</span></code>), where <code class="docutils literal notranslate"><span class="pre">768</span></code> indicates 768 hidden units of 12 attention heads in the last transformer layer.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sequences:list</span> <span class="pre">or</span> <span class="pre">array,</span> <span class="pre">necessary</span> <span class="pre">parameters</span></span></dt>
+<dd><p>List or array of sequences used to generate features.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">kmer:int,</span> <span class="pre">default=3</span></span></dt>
+<dd><p>kmer specifies the window size to be used when tokenizing sequences. There are four window sizes to choose from <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6]</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">model:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path where the downloaded <code class="docutils literal notranslate"><span class="pre">RBPBERT</span></code> model is stored, it should be noted that when passing parameters, only the <cite>absolute path</cite> to the folder where the model is located should be passed in, as in the example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">wangyansong</span><span class="o">/</span><span class="n">wangyubo</span><span class="o">/</span><span class="n">EnrichRBP</span><span class="o">/</span><span class="n">src</span><span class="o">/</span><span class="n">dynamicRNALM</span><span class="o">/</span><span class="n">circleRNA</span><span class="o">/</span><span class="n">pytorch_model_3mer</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.Features.generateStaticLMFeatures">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.Features.</span></span><span class="sig-name descname"><span class="pre">generateStaticLMFeatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sequences</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kmer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.Features.generateStaticLMFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>There are four static semantic models available in the EnrichRBP: <code class="docutils literal notranslate"><span class="pre">fasttext</span></code>, <code class="docutils literal notranslate"><span class="pre">GloVe</span></code>, <code class="docutils literal notranslate"><span class="pre">word2vec</span></code> and <code class="docutils literal notranslate"><span class="pre">doc2vec</span></code>. These models can be downloaded from <a class="reference external" href="https://figshare.com/ndownloader/files/37970541">figshare link</a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sequences:list</span> <span class="pre">or</span> <span class="pre">array,</span> <span class="pre">necessary</span> <span class="pre">parameters</span></span></dt>
+<dd><p>List or array of sequences used to generate features.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">kmer:int,</span> <span class="pre">default=3</span></span></dt>
+<dd><p>kmer specifies the window size to be used when tokenizing sequences. There are four window sizes to choose from <code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">4,</span> <span class="pre">5,</span> <span class="pre">6]</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">model:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path where the downloaded <code class="docutils literal notranslate"><span class="pre">static</span> <span class="pre">semantic</span> <span class="pre">model</span></code> is stored, it should be noted that when passing parameters, you need to be careful that the model path passed in is consistent with <code class="docutils literal notranslate"><span class="pre">kmer</span></code>.</p>
+</dd></dl>
+
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">LM_type:str,</span> <span class="pre">['word2vec',</span> <span class="pre">'fasttext',</span> <span class="pre">'doc2vec',</span> <span class="pre">'GloVe']</span></span></dt>
+<dd><p>Separated from the incoming model file name, used to distinguish different models when extracting embedding.</p>
+</dd></dl>
+
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since both of the above modules need to separate some required information from the model names to perform matching checks, please do not make any changes to the downloaded model file names when using dynamic or static language models for semantic feature extraction, otherwise it may cause the module not to work properly.</p>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.Features.generateStructureFeatures">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.Features.</span></span><span class="sig-name descname"><span class="pre">generateStructureFeatures</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">script_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basic_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">W</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">101</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">L</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">70</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.Features.generateStructureFeatures" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function calls <code class="docutils literal notranslate"><span class="pre">RNAplfold</span></code> to calculate locally stable secondary structure - pair probabilities <a class="reference internal" href="#rnaplfold" id="id2"><span>[RNAplfold]</span></a>. The respective scripts of <code class="docutils literal notranslate"><span class="pre">RNAplfold</span></code> can be downloaded at <a class="reference external" href="https://figshare.com/articles/software/LM_for_RBP_package/21383187">figshare link</a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">dataset_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>Path to the fasta file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">script_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path where the <code class="docutils literal notranslate"><span class="pre">RNAplfold</span></code> scripts are located.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">basic_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path where the generated secondary structure profile files are stored, under which four folders E, H, I and M will be created, as well as the final structure information file combined_profile.txt</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">W:int,</span> <span class="pre">default=101</span></span></dt>
+<dd><p>Average the pair probabilities over windows of given size.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">L:int,</span> <span class="pre">default=70</span></span></dt>
+<dd><p>Set the maximum allowed separation of a base pair to span.
+By setting the maximum base pair span no pairs (i,j) with j−i &gt; span will be allowed. Defaults to winsize if parameter is omitted.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">u:int,</span> <span class="pre">default=1</span></span></dt>
+<dd><p>Compute the mean probability that regions of length 1 to a given length are unpaired</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">dateset_name,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>To facilitate the storage of structural information for multiple datasets, dataset_name is used to mark different datasets, which is combined with <code class="docutils literal notranslate"><span class="pre">basic_path</span></code> to form the storage path.</p>
+</dd></dl>
+
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">path:str</span></span></dt>
+<dd><p>Used to store the final secondary structure information file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">E_path:str</span></span></dt>
+<dd><p>Used to store the E_RNAplfold secondary structure information file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">M_path:str</span></span></dt>
+<dd><p>Used to store the M_RNAplfold secondary structure information file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">I_path:str</span></span></dt>
+<dd><p>Used to store the I_RNAplfold secondary structure information file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">H_path:str</span></span></dt>
+<dd><p>Used to store the H_RNAplfold secondary structure information file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">cmd:str</span></span></dt>
+<dd><p>Used to store the command to summary secondary structure information file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that you need to give the RNAplfold scripts executable permissions using the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chmod</span> <span class="mi">764</span> <span class="n">path_to_the_scripts</span>
+</pre></div>
+</div>
+</div>
+<div role="list" class="citation-list">
+<div class="citation" id="rnaplfold" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">RNAplfold</a><span class="fn-bracket">]</span></span>
+<ol class="upperalpha simple" start="18">
+<li><p>Lorenz, S.H. Bernhart, C. Hoener zu Siederdissen, H. Tafer, C. Flamm, P.F. Stadler and I.L. Hofacker (2011), “ViennaRNA Package 2.0”, Algorithms for Molecular Biology: 6:26</p></li>
+</ol>
+</div>
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="file_operation.html" class="btn btn-neutral float-left" title="EnrichRBP.filesOperation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="feature_selection_methods.html" class="btn btn-neutral float-right" title="EnrichRBP.featureSelection" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yubo Wang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

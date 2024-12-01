@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnrichRBP.metricsPlot &mdash; EnrichRBP 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="EnrichRBP basic usage flow" href="basic_usage.html" />
+    <link rel="prev" title="EnrichRBP.evaluateClassifiers" href="evaluate_classifiers.html" />
+    <link href="_static/default.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EnrichRBP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="file_operation.html">EnrichRBP.filesOperation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNA_features.html">EnrichRBP.Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_selection_methods.html">EnrichRBP.featureSelection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluate_classifiers.html">EnrichRBP.evaluateClassifiers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EnrichRBP.metricsPlot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.roc_curve_deeplearning"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.roc_curve_deeplearning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.roc_curve_machinelearning"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.roc_curve_machinelearning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.partial_dependence"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.partial_dependence()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.confusion_matirx_deeplearning"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.confusion_matirx_deeplearning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.confusion_matrix_machinelearning"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.confusion_matrix_machinelearning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.det_curve_machinelearning"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.det_curve_machinelearning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.det_curve_deeplearning"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.det_curve_deeplearning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.precision_recall_curve_machinelearning"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.precision_recall_curve_machinelearning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.precision_recall_curve_deeplearning"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.precision_recall_curve_deeplearning()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.shap_bar"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.shap_bar()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.shap_scatter"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.shap_scatter()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.shap_waterfall"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.shap_waterfall()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.shap_interaction_scatter"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.shap_interaction_scatter()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.shap_beeswarm"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.shap_beeswarm()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.shap_heatmap"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.shap_heatmap()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.violinplot"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.violinplot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.boxplot"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.boxplot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.pointplot"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.pointplot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.barplot"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.barplot()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.sns_heatmap"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.sns_heatmap()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.prediction_error"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.prediction_error()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.descrimination_threshold"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.descrimination_threshold()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.learning_curve"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.learning_curve()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#EnrichRBP.metricsPlot.cross_validation_score"><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot.cross_validation_score()</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="basic_usage.html">EnrichRBP basic usage flow</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileOperation_examples.html">File operation examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="featureGeneration_examples.html">Feature generation examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="featureSelection_examples.html">Feature selection examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluateClassifiers_examples.html">Evaluating classifiers examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotAnalysis_examples.html">Performance and data visualization examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HISTORY</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EnrichRBP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">EnrichRBP.metricsPlot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/analysis_plots.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="enrichrbp-metricsplot">
+<h1>EnrichRBP.metricsPlot<a class="headerlink" href="#enrichrbp-metricsplot" title="Permalink to this heading">¶</a></h1>
+<p>Many visualization functions are integrated in EnrichRBP for plotting different types of data or performance analysis, which requires some dependencies such as <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, <code class="docutils literal notranslate"><span class="pre">sklearn</span></code>, <code class="docutils literal notranslate"><span class="pre">seaborn</span></code>, <code class="docutils literal notranslate"><span class="pre">shap</span></code> and <code class="docutils literal notranslate"><span class="pre">yellobrick</span></code>.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.roc_curve_deeplearning">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">roc_curve_deeplearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_proba_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.roc_curve_deeplearning" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">label_list:list</span></span></dt>
+<dd><p>The list of label arrays corresponding to the sequences used to train each classifier, label value should be in {-1,1} or {0,1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pred_proba_list:list</span></span></dt>
+<dd><p>The list of target score arrays corresponding to the sequences used to train each classifier, can either be probability estimates of the positive class, confidence values, or non-thresholded measure of decisions (as returned by “decision_function” on some classifiers).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">name_list:list</span></span></dt>
+<dd><p>The list of names corresponding to each classifier, the names in the list will be shown in final <code class="docutils literal notranslate"><span class="pre">.png</span></code> image file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">fpr:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(&gt;2,)</span></span></dt>
+<dd><p>False positive rate.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">tpr:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(&gt;2,)</span></span></dt>
+<dd><p>True positive rate.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.roc_curve_machinelearning">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">roc_curve_machinelearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.roc_curve_machinelearning" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span></span></dt>
+<dd><p>Two-dimensional real number matrix used to fit each classifiers.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels. The value of labels should be in {-1, 1} or {0, 1}</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf_list:list</span></span></dt>
+<dd><p>The list of <code class="docutils literal notranslate"><span class="pre">sklearn</span> <span class="pre">classifiers</span></code> used to analyse roc curve.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_size:float</span> <span class="pre">or</span> <span class="pre">int,</span> <span class="pre">default=0.25</span></span></dt>
+<dd><p>If float, should be between 0.0 and 1.0 and represent the proportion of the dataset to include in the test split. If int, represents the absolute number of test samples.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">random_state:int,</span> <span class="pre">RandomState</span> <span class="pre">instance</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">default=0</span></span></dt>
+<dd><p>Controls the shuffling applied to the data before applying the split. Pass an int for reproducible output across multiple function calls.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.partial_dependence">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">partial_dependence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_names</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subsample</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid_resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.partial_dependence" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:{numpy</span> <span class="pre">array</span> <span class="pre">or</span> <span class="pre">dataframe}</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Features is used to generate a grid of values for the target features (where the partial dependence will be evaluated).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature_names:array-like</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_features,)</span></span></dt>
+<dd><p>Name of each feature; feature_names[i] holds the name of the feature with index i.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:sklearn</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A fitted estimator object implementing predict, predict_proba, or decision_function. Multioutput-multiclass classifiers are <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">supported</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">subsample:float,</span> <span class="pre">int</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">default=50</span></span></dt>
+<dd><p>Sampling for ICE curves. If <code class="docutils literal notranslate"><span class="pre">float</span></code>, should be between 0.0 and 1.0 and represent the proportion of the dataset to be used to plot ICE curves. If <code class="docutils literal notranslate"><span class="pre">int</span></code>, represents the absolute number samples to use.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">n_jobs:int,</span> <span class="pre">default=3</span></span></dt>
+<dd><p>The number of CPUs to use to compute the partial dependences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">random_state:int,</span> <span class="pre">RandomState</span> <span class="pre">instance</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">default=0</span></span></dt>
+<dd><p>Controls the randomness of the selected samples when subsamples is not <code class="docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">grid_resolution:int,</span> <span class="pre">default=20</span></span></dt>
+<dd><p>The number of equally spaced points on the axes of the plots, for each target feature.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.confusion_matirx_deeplearning">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">confusion_matirx_deeplearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">test_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.confusion_matirx_deeplearning" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>Ground truth labels corresponding to sequences in dataset.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pred_labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>Estimated labels conducted by a deep learning model.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.confusion_matrix_machinelearning">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">confusion_matrix_machinelearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_tags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">normalize</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.confusion_matrix_machinelearning" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:sklearn</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A sklearn classifier instance.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>Labels to index the matrix.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">label_tags:list</span> <span class="pre">of</span> <span class="pre">names</span> <span class="pre">for</span> <span class="pre">different</span> <span class="pre">classes,</span> <span class="pre">default=None</span></span></dt>
+<dd><p>Target names used for plotting. By default, <code class="docutils literal notranslate"><span class="pre">labels</span></code> will be used.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_size:float</span> <span class="pre">or</span> <span class="pre">int,</span> <span class="pre">default=0.25</span></span></dt>
+<dd><p>If float, should be between 0.0 and 1.0 and represent the proportion of the dataset to include in the test split. If int, represents the absolute number of test samples.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">normalize:{'true',</span> <span class="pre">'pred',</span> <span class="pre">'all'},</span> <span class="pre">default=None</span></span></dt>
+<dd><p>Normalizes confusion matrix over the true (rows), predicted (columns) conditions or all the population. If None, confusion matrix will not be normalized.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">random_state:int,</span> <span class="pre">RandomState</span> <span class="pre">instance</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">default=0</span></span></dt>
+<dd><p>Controls the shuffling applied to the data before applying the split. Pass an int for reproducible output across multiple function calls.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.det_curve_machinelearning">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">det_curve_machinelearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.det_curve_machinelearning" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf_list:list</span></span></dt>
+<dd><p>List of classifiers used to draw det curve.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_size:float</span> <span class="pre">or</span> <span class="pre">int,</span> <span class="pre">default=0.25</span></span></dt>
+<dd><p>If float, should be between 0.0 and 1.0 and represent the proportion of the dataset to include in the test split. If int, represents the absolute number of test samples.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">random_state:int,</span> <span class="pre">RandomState</span> <span class="pre">instance</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">default=0</span></span></dt>
+<dd><p>Controls the shuffling applied to the data before applying the split. Pass an int for reproducible output across multiple function calls.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.det_curve_deeplearning">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">det_curve_deeplearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_proba_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.det_curve_deeplearning" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">label_list:list</span></span></dt>
+<dd><p>The list of label arrays corresponding to the sequences used to train each classifier, label value should be in {-1,1} or {0,1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pred_proba_list:list</span></span></dt>
+<dd><p>The list of target score arrays corresponding to the sequences used to train each classifier, can either be probability estimates of the positive class, confidence values, or non-thresholded measure of decisions (as returned by “decision_function” on some classifiers).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">name_list:list</span></span></dt>
+<dd><p>The list of names corresponding to each classifier, the names in the list will be shown in final <code class="docutils literal notranslate"><span class="pre">.png</span></code> image file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.precision_recall_curve_machinelearning">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">precision_recall_curve_machinelearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.precision_recall_curve_machinelearning" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_size:float</span> <span class="pre">or</span> <span class="pre">int,</span> <span class="pre">default=0.25</span></span></dt>
+<dd><p>If float, should be between 0.0 and 1.0 and represent the proportion of the dataset to include in the test split. If int, represents the absolute number of test samples.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">random_state:int,</span> <span class="pre">RandomState</span> <span class="pre">instance</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">default=0</span></span></dt>
+<dd><p>Controls the shuffling applied to the data before applying the split. Pass an int for reproducible output across multiple function calls.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.precision_recall_curve_deeplearning">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">precision_recall_curve_deeplearning</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pred_labels_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_list</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.precision_recall_curve_deeplearning" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">label_list:list</span></span></dt>
+<dd><p>The list of label arrays corresponding to the sequences used to train each classifier, label value should be in {-1,1} or {0,1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">pred_proba_list:list</span></span></dt>
+<dd><p>The list of target score arrays corresponding to the sequences used to train each classifier, can either be probability estimates of the positive class, confidence values, or non-thresholded measure of decisions (as returned by “decision_function” on some classifiers).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">name_list:list</span></span></dt>
+<dd><p>The list of names corresponding to each classifier, the names in the list will be shown in final <code class="docutils literal notranslate"><span class="pre">.png</span></code> image file.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.shap_bar">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">shap_bar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">100)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.shap_bar" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:sklearn</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A fitted estimator object implementing predict, predict_proba, or decision_function. Multioutput-multiclass classifiers are <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">supported</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sample_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">100)</span></span></dt>
+<dd><p>Defines the number of samples used to perform the shap value calculation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">10)</span></span></dt>
+<dd><p>Defines the features for calculating shap values.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.shap_scatter">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">shap_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">100)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.shap_scatter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:sklearn</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A fitted estimator object implementing predict, predict_proba, or decision_function. Multioutput-multiclass classifiers are <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">supported</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature_id:int</span></span></dt>
+<dd><p>The feature id for visualization, which should be less than or equal to the difference - 1 between the two values in <code class="docutils literal notranslate"><span class="pre">feature_size</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sample_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">100)</span></span></dt>
+<dd><p>Defines the number of samples used to perform the shap value calculation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">10)</span></span></dt>
+<dd><p>Defines the features for calculating shap values.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.shap_waterfall">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">shap_waterfall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">100)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.shap_waterfall" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><blockquote>
+<div><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences</p>
+</dd></dl>
+
+</div></blockquote>
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:sklearn</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A fitted estimator object implementing predict, predict_proba, or decision_function. Multioutput-multiclass classifiers are <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">supported</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sample_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">100)</span></span></dt>
+<dd><p>Defines the number of samples used to perform the shap value calculation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">10)</span></span></dt>
+<dd><p>Defines the features for calculating shap values.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.shap_interaction_scatter">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">shap_interaction_scatter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">100)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.shap_interaction_scatter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:sklearn</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A fitted estimator object implementing predict, predict_proba, or decision_function. Multioutput-multiclass classifiers are <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">supported</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sample_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">100)</span></span></dt>
+<dd><p>Defines the number of samples used to perform the shap value calculation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">10)</span></span></dt>
+<dd><p>Defines the features for calculating shap values.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.shap_beeswarm">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">shap_beeswarm</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">100)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.shap_beeswarm" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:sklearn</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A fitted estimator object implementing predict, predict_proba, or decision_function. Multioutput-multiclass classifiers are <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">supported</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sample_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">100)</span></span></dt>
+<dd><p>Defines the number of samples used to perform the shap value calculation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">10)</span></span></dt>
+<dd><p>Defines the features for calculating shap values.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.shap_heatmap">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">shap_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">100)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">10)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.shap_heatmap" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:sklearn</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A fitted estimator object implementing predict, predict_proba, or decision_function. Multioutput-multiclass classifiers are <code class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">supported</span></code>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sample_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">100)</span></span></dt>
+<dd><p>Defines the number of samples used to perform the shap value calculation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">10)</span></span></dt>
+<dd><p>Defines the features for calculating shap values.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.violinplot">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">violinplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.violinplot" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:dataframe</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">x_id:str</span></span></dt>
+<dd><p>Name of variables in <code class="docutils literal notranslate"><span class="pre">data</span></code> or vector data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">y_id:str</span></span></dt>
+<dd><p>Name of variables in <code class="docutils literal notranslate"><span class="pre">data</span></code> or vector data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.boxplot">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">boxplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.boxplot" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:dataframe</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">x_id:str</span></span></dt>
+<dd><p>Name of variables in <code class="docutils literal notranslate"><span class="pre">data</span></code> or vector data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">y_id:str</span></span></dt>
+<dd><p>Name of variables in <code class="docutils literal notranslate"><span class="pre">data</span></code> or vector data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.pointplot">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">pointplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.pointplot" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:dataframe</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">x_id:str</span></span></dt>
+<dd><p>Name of variables in <code class="docutils literal notranslate"><span class="pre">features</span></code> or vector data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">y_id:str</span></span></dt>
+<dd><p>Name of variables in <code class="docutils literal notranslate"><span class="pre">features</span></code> or vector data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.barplot">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">barplot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.barplot" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:dataframe</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">x_id:str</span></span></dt>
+<dd><p>Name of variables in <code class="docutils literal notranslate"><span class="pre">features</span></code> or vector data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">y_id:str</span></span></dt>
+<dd><p>Name of variables in <code class="docutils literal notranslate"><span class="pre">features</span></code> or vector data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.sns_heatmap">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">sns_heatmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">15)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">15)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.sns_heatmap" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">sample_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">15)</span></span></dt>
+<dd><p>The sample range used to plot the heatmap.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">feature_size:tuple,</span> <span class="pre">default=(0,</span> <span class="pre">15)</span></span></dt>
+<dd><p>The feature range used to plot the heatmap.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.prediction_error">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">prediction_error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">test_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.prediction_error" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">classes:list</span> <span class="pre">of</span> <span class="pre">str</span></span></dt>
+<dd><p>The class labels to use for the legend. Specifying classes in this manner is used to change the class names to a more specific format or to label encoded integer classes.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">test_size:float</span> <span class="pre">or</span> <span class="pre">int,</span> <span class="pre">default=0.25</span></span></dt>
+<dd><p>If float, should be between 0.0 and 1.0 and represent the proportion of the dataset to include in the test split. If int, represents the absolute number of test samples.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">random_state:int,</span> <span class="pre">RandomState</span> <span class="pre">instance</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">default=0</span></span></dt>
+<dd><p>Controls the shuffling applied to the data before applying the split. Pass an int for reproducible output across multiple function calls.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A scikit-learn estimator that should be a classifier. If the model is not a classifier, an exception is raised.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.descrimination_threshold">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">descrimination_threshold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.descrimination_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A scikit-learn estimator that should be a classifier. If the model is not a classifier, an exception is raised.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.learning_curve">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">learning_curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.learning_curve" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">folds:int,</span> <span class="pre">default=5</span></span></dt>
+<dd><p>Cross-validated folds, which divides the training set into 5 (or other values) subsets, where one subset is the validation set, and the other <code class="docutils literal notranslate"><span class="pre">fold</span> <span class="pre">-</span> <span class="pre">1</span></code> subsets constitute the training set. Each subset needs to be performed once as a validation set.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A scikit-learn estimator that should be a classifier. If the model is not a classifier, an exception is raised.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="EnrichRBP.metricsPlot.cross_validation_score">
+<span class="sig-prename descclassname"><span class="pre">EnrichRBP.metricsPlot.</span></span><span class="sig-name descname"><span class="pre">cross_validation_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">clf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">features</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">folds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scoring</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">image_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#EnrichRBP.metricsPlot.cross_validation_score" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">folds:int,</span> <span class="pre">default=5</span></span></dt>
+<dd><p>Cross-validated folds, which divides the training set into 5 (or other values) subsets, where one subset is the validation set, and the other <code class="docutils literal notranslate"><span class="pre">fold</span> <span class="pre">-</span> <span class="pre">1</span></code> subsets constitute the training set. Each subset needs to be performed once as a validation set.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">scoring:string,</span> <span class="pre">callable</span> <span class="pre">or</span> <span class="pre">None,</span> <span class="pre">optional,</span> <span class="pre">default:</span> <span class="pre">None</span></span></dt>
+<dd><p>A string or scorer callable object / function with signature <code class="docutils literal notranslate"><span class="pre">scorer(estimator,</span> <span class="pre">features,</span> <span class="pre">labels)</span></code></p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">clf:</span> <span class="pre">classifier</span></span></dt>
+<dd><p>A scikit-learn estimator that should be a classifier. If the model is not a classifier, an exception is raised.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">features:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,</span> <span class="pre">n_features)</span></span></dt>
+<dd><p>Input features corresponding to the sequences.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">labels:numpy</span> <span class="pre">array</span> <span class="pre">of</span> <span class="pre">shape</span> <span class="pre">(n_samples,)</span></span></dt>
+<dd><p>True binary labels used to fit classifier. The value of labels should be in {-1, 1} or {0, 1}.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">image_path:str,</span> <span class="pre">default=''</span></span></dt>
+<dd><p>The path used to store the final image file.</p>
+</dd></dl>
+
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="evaluate_classifiers.html" class="btn btn-neutral float-left" title="EnrichRBP.evaluateClassifiers" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="basic_usage.html" class="btn btn-neutral float-right" title="EnrichRBP basic usage flow" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yubo Wang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

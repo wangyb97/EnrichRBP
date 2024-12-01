@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EnrichRBP basic usage flow &mdash; EnrichRBP 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="File operation examples" href="fileOperation_examples.html" />
+    <link rel="prev" title="EnrichRBP.metricsPlot" href="analysis_plots.html" />
+    <link href="_static/default.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            EnrichRBP
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installation.html">Installation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="file_operation.html">EnrichRBP.filesOperation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RNA_features.html">EnrichRBP.Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="feature_selection_methods.html">EnrichRBP.featureSelection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluate_classifiers.html">EnrichRBP.evaluateClassifiers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_plots.html">EnrichRBP.metricsPlot</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">EXAMPLES</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">EnrichRBP basic usage flow</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#load-the-dataset">Load the dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generate-features-for-sequences">Generate features for sequences</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#perform-feature-selection-to-refine-the-biological-features">Perform feature selection to refine the biological features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#evaluate-deep-machine-learning-classifier">Evaluate deep/machine learning classifier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#visualize-performance-and-feature-analysis">Visualize performance and feature analysis</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fileOperation_examples.html">File operation examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="featureGeneration_examples.html">Feature generation examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="featureSelection_examples.html">Feature selection examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="evaluateClassifiers_examples.html">Evaluating classifiers examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="plotAnalysis_examples.html">Performance and data visualization examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">HISTORY</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_history.html">Release History</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">EnrichRBP</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">EnrichRBP basic usage flow</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/basic_usage.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="enrichrbp-basic-usage-flow">
+<h1>EnrichRBP basic usage flow<a class="headerlink" href="#enrichrbp-basic-usage-flow" title="Permalink to this heading">¶</a></h1>
+<p>This example illustrates the basic usage of <code class="docutils literal notranslate"><span class="pre">EnrichRBP</span></code>, including loading the dataset, generating features, feature selection, training the model, and performance and feature analysis.</p>
+<p>This example uses:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EnrichRBP.filesOperation</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnrichRBP.Features</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnrichRBP.evaluateClassifiers</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnrichRBP.metricsPlot</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EnrichRBP.featureSelection</span></code></p></li>
+</ul>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">EnrichRBP.filesOperation</span> <span class="kn">import</span> <span class="n">read_fasta_file</span><span class="p">,</span> <span class="n">read_label</span>
+<span class="kn">from</span> <span class="nn">EnrichRBP.Features</span> <span class="kn">import</span> <span class="n">generateDynamicLMFeatures</span><span class="p">,</span> <span class="n">generateStaticLMFeatures</span><span class="p">,</span> <span class="n">generateStructureFeatures</span><span class="p">,</span> <span class="n">generateBPFeatures</span>
+<span class="kn">from</span> <span class="nn">EnrichRBP.evaluateClassifiers</span> <span class="kn">import</span> <span class="n">evaluateDLclassifers</span>
+<span class="kn">from</span> <span class="nn">EnrichRBP.metricsPlot</span> <span class="kn">import</span> <span class="n">violinplot</span><span class="p">,</span> <span class="n">shap_interaction_scatter</span>
+<span class="kn">from</span> <span class="nn">EnrichRBP.featureSelection</span> <span class="kn">import</span> <span class="n">cife</span>
+<span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+</pre></div>
+</div>
+<section id="load-the-dataset">
+<h2>Load the dataset<a class="headerlink" href="#load-the-dataset" title="Permalink to this heading">¶</a></h2>
+<p>Load a AGO1 dataset as example.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="c1"># Define the path where the dataset locates.</span>
+<span class="n">fasta_path</span> <span class="o">=</span> <span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/RNA_datasets/circRNAdataset/AGO1/seq&#39;</span>
+<span class="n">label_path</span> <span class="o">=</span> <span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/RNA_datasets/circRNAdataset/AGO1/label&#39;</span>
+
+<span class="n">sequences</span> <span class="o">=</span> <span class="n">read_fasta_file</span><span class="p">(</span><span class="n">fasta_path</span><span class="p">)</span>  <span class="c1"># Read sequences and labels from given path</span>
+<span class="n">label</span> <span class="o">=</span> <span class="n">read_label</span><span class="p">(</span><span class="n">label_path</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="generate-features-for-sequences">
+<h2>Generate features for sequences<a class="headerlink" href="#generate-features-for-sequences" title="Permalink to this heading">¶</a></h2>
+<p>We generate three types of features as examples, in generating biological features, we generate Positional gapped k-m-tuple pairs (PGKM) features, in generating semantic information, we process the sequence as 4mer in dynamic model, while in static model, we process the sequence as 3mer and use fasttext as the model for embedding extraction.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">biological_features</span> <span class="o">=</span> <span class="n">generateBPFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">PGKM</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># generate biological features</span>
+<span class="n">bert_features</span> <span class="o">=</span> <span class="n">generateDynamicLMFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">kmer</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/dynamicRNALM/circleRNA/pytorch_model_4mer&#39;</span><span class="p">)</span>  <span class="c1"># generate dynamic semantic information</span>
+<span class="n">static_features</span> <span class="o">=</span> <span class="n">generateStaticLMFeatures</span><span class="p">(</span><span class="n">sequences</span><span class="p">,</span> <span class="n">kmer</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/staticRNALM/circleRNA/circRNA_3mer_fasttext&#39;</span><span class="p">)</span> <span class="c1"># static semantic information</span>
+<span class="n">structure_features</span> <span class="o">=</span> <span class="n">generateStructureFeatures</span><span class="p">(</span><span class="n">fasta_path</span><span class="p">,</span> <span class="n">script_path</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/RNAplfold&#39;</span><span class="p">,</span> <span class="n">basic_path</span><span class="o">=</span><span class="s1">&#39;/home/wangyansong/wangyubo/EnrichRBP/src/circRNAdatasetAGO1&#39;</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">101</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">u</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># generate secondary structure information</span>
+</pre></div>
+</div>
+</section>
+<section id="perform-feature-selection-to-refine-the-biological-features">
+<h2>Perform feature selection to refine the biological features<a class="headerlink" href="#perform-feature-selection-to-refine-the-biological-features" title="Permalink to this heading">¶</a></h2>
+<p>We take the cife method as example.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">biological_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">refined_biological_features</span> <span class="o">=</span> <span class="n">cife</span><span class="p">(</span><span class="n">biological_features</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">num_features</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># refine the biologcial_feature using cife feature selection method</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">refined_biological_features</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The output of the above code is as follows:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">34636</span><span class="p">,</span> <span class="mi">400</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">34636</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="evaluate-deep-machine-learning-classifier">
+<h2>Evaluate deep/machine learning classifier<a class="headerlink" href="#evaluate-deep-machine-learning-classifier" title="Permalink to this heading">¶</a></h2>
+<p>We take the deep learning models as example.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">evaluateDLclassifers</span><span class="p">(</span><span class="n">bert_features</span><span class="p">,</span> <span class="n">folds</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">label</span><span class="p">,</span> <span class="n">file_path</span><span class="o">=</span><span class="s1">&#39;./&#39;</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 10-fold cross-validation of deep learning models using dynamic semantic information</span>
+</pre></div>
+</div>
+<p>After the function finishes running, a <code class="docutils literal notranslate"><span class="pre">DL_evalution_metrics.csv</span></code> will be saved in the path specified by <code class="docutils literal notranslate"><span class="pre">file_path</span></code>, with the following format.</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">clf_name</span><span class="p">,</span><span class="n">metrics</span><span class="p">,</span><span class="n">metric_name</span>
+<span class="n">CNN</span><span class="p">,</span><span class="mf">0.999745345</span><span class="p">,</span><span class="n">AUC</span>
+<span class="n">CNN</span><span class="p">,</span><span class="mf">0.995525096</span> <span class="n">ACC</span>
+<span class="n">CNN</span><span class="p">,</span><span class="mf">0.991053703</span><span class="p">,</span><span class="n">MCC</span>
+<span class="n">CNN</span><span class="p">,</span><span class="mf">0.994975596</span><span class="p">,</span><span class="n">Recall</span>
+<span class="n">CNN</span><span class="p">,</span><span class="mf">0.9955248</span><span class="p">,</span><span class="n">F1_Scores</span>
+<span class="n">RNN</span><span class="p">,</span><span class="mf">0.998232352</span><span class="p">,</span><span class="n">AUC</span>
+<span class="n">RNN</span><span class="p">,</span><span class="mf">0.988452081</span><span class="p">,</span><span class="n">ACC</span>
+<span class="n">RNN</span><span class="p">,</span><span class="mf">0.976941921</span><span class="p">,</span><span class="n">MCC</span>
+<span class="n">RNN</span><span class="p">,</span><span class="mf">0.983881982</span><span class="p">,</span><span class="n">Recall</span>
+<span class="n">RNN</span><span class="p">,</span><span class="mf">0.988370228</span><span class="p">,</span><span class="n">F1_Scores</span>
+<span class="n">ResNet</span><span class="p">,</span><span class="mf">0.999630465</span><span class="p">,</span><span class="n">AUC</span>
+<span class="n">ResNet</span><span class="p">,</span><span class="mf">0.995900484</span><span class="p">,</span><span class="n">ACC</span>
+<span class="n">ResNet</span><span class="p">,</span><span class="mf">0.991807785</span><span class="p">,</span><span class="n">MCC</span>
+<span class="n">ResNet</span><span class="p">,</span><span class="mf">0.994295177</span><span class="p">,</span><span class="n">Recall</span>
+<span class="n">ResNet</span><span class="p">,</span><span class="mf">0.995894144</span><span class="p">,</span><span class="n">F1_Scores</span>
+<span class="n">MLP</span><span class="p">,</span><span class="mf">0.988894799</span><span class="p">,</span><span class="n">AUC</span>
+<span class="n">MLP</span><span class="p">,</span><span class="mf">0.935463968</span><span class="p">,</span><span class="n">ACC</span>
+<span class="n">MLP</span><span class="p">,</span><span class="mf">0.867734521</span><span class="p">,</span><span class="n">MCC</span>
+<span class="n">MLP</span><span class="p">,</span><span class="mf">0.978133195</span><span class="p">,</span><span class="n">Recall</span>
+<span class="n">MLP</span><span class="p">,</span><span class="mf">0.951769181</span><span class="p">,</span><span class="n">F1_Scores</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+<section id="visualize-performance-and-feature-analysis">
+<h2>Visualize performance and feature analysis<a class="headerlink" href="#visualize-performance-and-feature-analysis" title="Permalink to this heading">¶</a></h2>
+<p>We use the SVM trained with refined_biological_features for feature shap value calculation as an example.</p>
+<div class="highlight-py notranslate"><div class="highlight"><pre><span></span><span class="n">clf</span> <span class="o">=</span> <span class="n">SVC</span><span class="p">(</span><span class="n">probability</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">shap_beeswarm</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">clf</span><span class="p">,</span> <span class="n">sample_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span> <span class="n">feature_size</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">image_path</span><span class="o">=</span><span class="n">file_path</span><span class="p">)</span> <span class="c1"># Plotting the importance of biological features in SVM using beeswarm plot</span>
+</pre></div>
+</div>
+<p>An <code class="docutils literal notranslate"><span class="pre">shap_beeswarm.png</span></code> will be saved under <code class="docutils literal notranslate"><span class="pre">file_path</span></code>, as follows.</p>
+<img alt="shap_interaction_scatter" class="align-center" src="_images/shap_beeswarm1.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="analysis_plots.html" class="btn btn-neutral float-left" title="EnrichRBP.metricsPlot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fileOperation_examples.html" class="btn btn-neutral float-right" title="File operation examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Yubo Wang.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
