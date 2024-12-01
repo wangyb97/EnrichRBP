@@ -6,4 +6,4 @@ if on_rtd:
 else:
     html_theme = "nature"
     
-root_doc = 'index'
+root_doc = 'source/index'
