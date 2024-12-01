@@ -13,7 +13,7 @@ Welcome to EnrichRBP's documentation!
 
 If you find EnrichRBP helpful in your work or research, we would greatly appreciate citations to the following paper
 ::
- Unpublished yet.
+Unpublished yet.
 
 EnrichRBP is a powerful web service that enables researchers to develop original deep learning and machine learning architectures to explore the complex dynamics of RNA-binding proteins.
 
